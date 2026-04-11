@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CMTA Development | Cybersecurity Risk & Advisory</title>
+<meta name="description" content="CMTA Development delivers enterprise-grade cybersecurity risk assessments, penetration testing, OT/ICS security, and AI-driven advisory services.">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #080d1a;
+    --navy2: #0f1828;
+    --steel: #1a2a40;
+    --accent: #00c6ff;
+    --accent-dim: rgba(0,198,255,0.12);
+    --muted: #7a8ba8;
+    --light: #dde5f0;
+    --white: #ffffff;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: var(--light);
+    line-height: 1.7;
+    font-size: 16px;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 6%;
+    background: rgba(8,13,26,0.9);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0,198,255,0.07);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 1.25rem;
+    letter-spacing: 0.05em; color: var(--white);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: 0.88rem; font-weight: 500; letter-spacing: 0.03em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta {
+    background: var(--accent) !important; color: var(--navy) !important;
+    padding: 0.5rem 1.3rem; border-radius: 3px;
+    font-weight: 700 !important; font-size: 0.83rem !important;
+    letter-spacing: 0.06em !important; text-transform: uppercase;
+  }
+  .nav-cta:hover { background: #33d4ff !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 8rem 6% 5rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-grid {
+    position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(0,198,255,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,198,255,0.035) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+  }
+  .hero-orb1 {
+    position: absolute; top: 5%; right: -8%; width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(0,100,180,0.14) 0%, transparent 65%);
+    border-radius: 50%; pointer-events: none;
+  }
+  .hero-orb2 {
+    position: absolute; bottom: -15%; left: -8%; width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(0,198,255,0.07) 0%, transparent 65%);
+    border-radius: 50%; pointer-events: none;
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 820px; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    border: 1px solid rgba(0,198,255,0.25); padding: 0.38rem 1rem;
+    border-radius: 100px; font-size: 0.73rem; font-weight: 600;
+    letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase;
+    margin-bottom: 2rem; background: rgba(0,198,255,0.04);
+  }
+  .hero-eyebrow::before {
+    content: ''; width: 5px; height: 5px;
+    background: var(--accent); border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+  }
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.6rem, 5.5vw, 4.8rem);
+    font-weight: 800; line-height: 1.07;
+    color: var(--white); margin-bottom: 1.6rem;
+    letter-spacing: -0.025em;
+  }
+  h1 em { color: var(--accent); font-style: normal; }
+  .hero-sub {
+    font-size: 1.1rem; color: var(--muted); font-weight: 300;
+    max-width: 540px; margin-bottom: 2.8rem; line-height: 1.85;
+  }
+  .cta-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--accent); color: var(--navy);
+    font-family: 'DM Sans', sans-serif; font-weight: 700;
+    font-size: 0.88rem; letter-spacing: 0.05em; text-transform: uppercase;
+    padding: 0.9rem 2.2rem; border: none; border-radius: 3px;
+    cursor: pointer; text-decoration: none; display: inline-block;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: #33d4ff; transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent; color: var(--light);
+    font-family: 'DM Sans', sans-serif; font-weight: 500;
+    font-size: 0.88rem; padding: 0.9rem 2.2rem;
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 3px; cursor: pointer; text-decoration: none; display: inline-block;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+  .hero-bar {
+    display: flex; gap: 3.5rem; margin-top: 4.5rem;
+    padding-top: 2.5rem; border-top: 1px solid rgba(255,255,255,0.06);
+    flex-wrap: wrap;
+  }
+  .hero-stat-val {
+    font-family: 'Syne', sans-serif; font-size: 1.9rem; font-weight: 700;
+    color: var(--white); line-height: 1;
+  }
+  .hero-stat-val em { color: var(--accent); font-style: normal; }
+  .hero-stat-lbl {
+    font-size: 0.75rem; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 0.09em; margin-top: 0.35rem;
+  }
+
+  /* SHARED */
+  section { padding: 6rem 6%; }
+  .eyebrow {
+    font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--accent); font-weight: 600; margin-bottom: 0.85rem;
+  }
+  h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+    font-weight: 700; color: var(--white);
+    line-height: 1.15; margin-bottom: 1rem; letter-spacing: -0.015em;
+  }
+  .lead {
+    font-size: 1rem; color: var(--muted); max-width: 560px;
+    line-height: 1.85; margin-bottom: 3.5rem;
+  }
+
+  /* SERVICES */
+  #services { background: var(--navy2); }
+  .svc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    border: 1px solid rgba(0,198,255,0.08);
+    gap: 1px; background: rgba(0,198,255,0.08);
+  }
+  .svc-card {
+    background: var(--navy2); padding: 2.2rem 1.8rem;
+    position: relative; overflow: hidden; transition: background 0.25s;
+  }
+  .svc-card::before {
+    content: ''; position: absolute; bottom: 0; left: 0;
+    height: 2px; width: 0; background: var(--accent);
+    transition: width 0.35s ease;
+  }
+  .svc-card:hover { background: var(--steel); }
+  .svc-card:hover::before { width: 100%; }
+  .svc-ico {
+    width: 42px; height: 42px; border-radius: 8px;
+    background: var(--accent-dim);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.4rem;
+  }
+  .svc-ico svg {
+    width: 20px; height: 20px; stroke: var(--accent);
+    fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+  }
+  .svc-card h3 {
+    font-family: 'Syne', sans-serif; font-size: 1rem;
+    font-weight: 700; color: var(--white); margin-bottom: 0.6rem;
+  }
+  .svc-card p { font-size: 0.86rem; color: var(--muted); line-height: 1.8; }
+
+  /* OT */
+  #ot { background: var(--navy); }
+  .ot-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1.2rem; margin-bottom: 2rem;
+  }
+  .ot-card {
+    padding: 1.8rem; border: 1px solid rgba(0,198,255,0.1);
+    border-radius: 3px; background: rgba(255,255,255,0.02);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .ot-card:hover { border-color: rgba(0,198,255,0.28); background: rgba(0,198,255,0.03); }
+  .ot-tag {
+    font-size: 0.7rem; letter-spacing: 0.13em; text-transform: uppercase;
+    color: var(--accent); font-weight: 600; margin-bottom: 0.6rem;
+  }
+  .ot-card h4 {
+    font-family: 'Syne', sans-serif; font-size: 0.95rem;
+    font-weight: 700; color: var(--white); margin-bottom: 0.5rem;
+  }
+  .ot-card p { font-size: 0.84rem; color: var(--muted); line-height: 1.75; }
+  .ot-industries {
+    padding: 1.4rem 1.8rem;
+    border-left: 2px solid var(--accent);
+    background: rgba(0,198,255,0.04);
+    border-radius: 0 3px 3px 0;
+    font-size: 0.88rem; color: var(--muted); line-height: 1.8;
+  }
+  .ot-industries strong { color: var(--white); }
+
+  /* ABOUT */
+  #about { background: var(--navy2); }
+  .about-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .about-visual {
+    position: relative; height: 380px;
+    border: 1px solid rgba(0,198,255,0.1);
+    background: var(--steel); border-radius: 3px;
+    display: flex; align-items: center; justify-content: center; overflow: hidden;
+  }
+  .about-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 25% 25%, rgba(0,198,255,0.07) 0%, transparent 55%),
+      radial-gradient(circle at 75% 75%, rgba(0,100,180,0.07) 0%, transparent 55%);
+  }
+  .about-inner { position: relative; z-index: 2; text-align: center; }
+  .pillars { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 2rem; }
+  .pillar {
+    display: flex; gap: 1rem; align-items: flex-start;
+    padding: 1.1rem 1.4rem; border: 1px solid rgba(0,198,255,0.09);
+    border-radius: 3px; background: rgba(255,255,255,0.015);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .pillar:hover { border-color: rgba(0,198,255,0.25); background: rgba(0,198,255,0.03); }
+  .pillar-n {
+    font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 800;
+    color: var(--accent); opacity: 0.35; line-height: 1; min-width: 2rem;
+  }
+  .pillar h4 {
+    font-family: 'Syne', sans-serif; font-size: 0.92rem;
+    font-weight: 700; color: var(--white); margin-bottom: 0.2rem;
+  }
+  .pillar p { font-size: 0.84rem; color: var(--muted); line-height: 1.65; }
+
+  /* CONTACT */
+  #contact { background: var(--navy); }
+  .contact-wrap { display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: start; }
+  .contact-info p { font-size: 0.95rem; color: var(--muted); line-height: 1.85; margin-bottom: 2rem; }
+  .contact-detail {
+    display: flex; align-items: center; gap: 0.75rem;
+    font-size: 0.88rem; color: var(--muted); margin-bottom: 0.9rem;
+  }
+  .contact-detail svg {
+    width: 16px; height: 16px; stroke: var(--accent);
+    fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+    flex-shrink: 0;
+  }
+  .contact-detail a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .contact-detail a:hover { color: var(--accent); }
+  .cf {
+    background: var(--navy2); border: 1px solid rgba(0,198,255,0.1);
+    border-radius: 3px; padding: 2.5rem;
+  }
+  .cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .cf-field { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+  .cf-field label {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.07em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .cf-field input,
+  .cf-field select,
+  .cf-field textarea {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(0,198,255,0.15);
+    border-radius: 3px; padding: 0.8rem 1rem;
+    color: var(--white); font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem; outline: none; width: 100%;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .cf-field input::placeholder,
+  .cf-field textarea::placeholder { color: rgba(122,139,168,0.45); }
+  .cf-field input:focus,
+  .cf-field select:focus,
+  .cf-field textarea:focus { border-color: var(--accent); background: rgba(0,198,255,0.04); }
+  .cf-field select { appearance: none; cursor: pointer; }
+  .cf-field select option { background: var(--navy2); color: var(--white); }
+  .cf-field textarea { resize: vertical; min-height: 110px; }
+  .cf-submit {
+    width: 100%; background: var(--accent); color: var(--navy);
+    font-family: 'DM Sans', sans-serif; font-weight: 700;
+    font-size: 0.88rem; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 1rem; border: none; border-radius: 3px;
+    cursor: pointer; transition: background 0.2s, transform 0.15s; margin-top: 0.5rem;
+  }
+  .cf-submit:hover { background: #33d4ff; transform: translateY(-1px); }
+  .cf-note { font-size: 0.76rem; color: var(--muted); margin-top: 0.8rem; text-align: center; }
+  .cf-success { display: none; text-align: center; padding: 1.5rem 0; color: var(--accent); font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 600; }
+
+  /* FOOTER */
+  footer { background: var(--navy2); border-top: 1px solid rgba(255,255,255,0.05); padding: 3.5rem 6% 2rem; }
+  .footer-top {
+    display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 3rem;
+    margin-bottom: 3rem; padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .footer-brand p { font-size: 0.86rem; color: var(--muted); line-height: 1.8; margin-top: 0.75rem; max-width: 280px; }
+  .footer-logo-txt { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.15rem; color: var(--white); }
+  .footer-logo-txt span { color: var(--accent); }
+  .footer-col h5 {
+    font-family: 'Syne', sans-serif; font-size: 0.78rem;
+    font-weight: 700; color: var(--white); letter-spacing: 0.08em;
+    text-transform: uppercase; margin-bottom: 1.1rem;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .footer-col ul a { color: var(--muted); text-decoration: none; font-size: 0.86rem; transition: color 0.2s; }
+  .footer-col ul a:hover { color: var(--accent); }
+  .footer-nl-row { display: flex; gap: 0; margin-top: 0.75rem; }
+  .footer-nl-row input {
+    flex: 1; background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(0,198,255,0.18); border-right: none;
+    border-radius: 3px 0 0 3px; padding: 0.7rem 1rem;
+    color: var(--white); font-family: 'DM Sans', sans-serif;
+    font-size: 0.86rem; outline: none; transition: border-color 0.2s;
+  }
+  .footer-nl-row input::placeholder { color: rgba(122,139,168,0.45); }
+  .footer-nl-row input:focus { border-color: var(--accent); }
+  .footer-nl-row button {
+    background: var(--accent); color: var(--navy);
+    font-family: 'DM Sans', sans-serif; font-weight: 700;
+    font-size: 0.82rem; padding: 0.7rem 1.2rem;
+    border: none; border-radius: 0 3px 3px 0;
+    cursor: pointer; white-space: nowrap; transition: background 0.2s;
+  }
+  .footer-nl-row button:hover { background: #33d4ff; }
+  .footer-nl-note { font-size: 0.74rem; color: var(--muted); margin-top: 0.5rem; }
+  .footer-nl-success { display: none; font-size: 0.84rem; color: var(--accent); margin-top: 0.6rem; font-weight: 500; }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .footer-copy { font-size: 0.8rem; color: var(--muted); }
+  .footer-legal { display: flex; gap: 1.5rem; }
+  .footer-legal a { font-size: 0.8rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .footer-legal a:hover { color: var(--accent); }
+
+  @media (max-width: 900px) {
+    .about-wrap { grid-template-columns: 1fr; }
+    .about-visual { height: 220px; }
+    .contact-wrap { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 640px) {
+    nav { padding: 1rem 5%; }
+    .nav-links { display: none; }
+    section { padding: 4rem 5%; }
+    .cf-row { grid-template-columns: 1fr; }
+    .hero-bar { gap: 2rem; }
+    .footer-top { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">CMTA<span>.</span>dev</a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact" class="nav-cta">Get Assessment</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-orb1"></div>
+  <div class="hero-orb2"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Cybersecurity Risk &amp; Advisory</div>
+    <h1>Defend. Assess.<br>Evolve with <em>Confidence.</em></h1>
+    <p class="hero-sub">CMTA Development delivers enterprise-grade cybersecurity risk assessments, penetration testing, OT/ICS security, and AI-driven advisory - built by practitioners, for organizations that take risk seriously.</p>
+    <div class="cta-row">
+      <a href="#contact" class="btn-primary">Request a CSRA</a>
+      <a href="#services" class="btn-outline">Explore Services</a>
+    </div>
+    <div class="hero-bar">
+      <div>
+        <div class="hero-stat-val">NIST<em> 2.0</em></div>
+        <div class="hero-stat-lbl">Framework Aligned</div>
+      </div>
+      <div>
+        <div class="hero-stat-val">IT<em> + OT</em></div>
+        <div class="hero-stat-lbl">Full Spectrum Coverage</div>
+      </div>
+      <div>
+        <div class="hero-stat-val">AI<em>-Driven</em></div>
+        <div class="hero-stat-lbl">Threat Intelligence</div>
+      </div>
+      <div>
+        <div class="hero-stat-val">15<em>+</em></div>
+        <div class="hero-stat-lbl">Years Experience</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="eyebrow">What We Do</div>
+  <h2>Comprehensive Security Services</h2>
+  <p class="lead">From foundational risk assessments to continuous vulnerability management and OT/ICS security, we cover the full cybersecurity lifecycle - tailored to your environment and risk posture.</p>
+  <div class="svc-grid">
+
+    <div class="svc-card">
+      <div class="svc-ico">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h3>Cybersecurity Risk Assessments</h3>
+      <p>Structured CSRA engagements mapped to NIST CSF 2.0, identifying gaps, threats, and prioritized remediation paths across your entire attack surface.</p>
+    </div>
+
+    <div class="svc-card">
+      <div class="svc-ico">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v3h3"/></svg>
+      </div>
+      <h3>Penetration Testing</h3>
+      <p>Adversary-simulated engagements across network, application, and social engineering vectors - exposing real vulnerabilities before attackers do.</p>
+    </div>
+
+    <div class="svc-card">
+      <div class="svc-ico">
+        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M7 8h10M7 12h6"/></svg>
+      </div>
+      <h3>Web Application Security</h3>
+      <p>OWASP Top 10 aligned assessments, API security testing, and source code review to harden your web-facing assets against injection, auth, and logic flaws.</p>
+    </div>
+
+    <div class="svc-card">
+      <div class="svc-ico">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+      </div>
+      <h3>AI-Driven Security Advisory</h3>
+      <p>Leveraging AI tooling for threat modeling, anomaly analysis, and decision support - helping your team stay ahead of evolving threat landscapes.</p>
+    </div>
+
+    <div class="svc-card">
+      <div class="svc-ico">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+      </div>
+      <h3>Compliance &amp; Governance</h3>
+      <p>Gap analysis and advisory for CMMC, HIPAA, SOC 2, and NIST frameworks - translating compliance requirements into actionable security programs.</p>
+    </div>
+
+    <div class="svc-card">
+      <div class="svc-ico">
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <h3>Cybersecurity Consulting</h3>
+      <p>Strategic advisory for security program maturity, vCISO services, incident response planning, and architecture reviews aligned to your business risk appetite.</p>
+    </div>
+
+    <div class="svc-card">
+      <div class="svc-ico">
+        <svg viewBox="0 0 24 24"><rect x="2" y="7" width="6" height="10" rx="1"/><rect x="16" y="7" width="6" height="10" rx="1"/><path d="M8 12h8M5 4v3M19 4v3M5 17v3M19 17v3"/></svg>
+      </div>
+      <h3>OT / ICS Security</h3>
+      <p>Specialized assessments for Operational Technology and Industrial Control Systems - protecting SCADA, PLCs, and critical infrastructure using IEC 62443 and NIST SP 800-82 guidance.</p>
+    </div>
+
+    <div class="svc-card">
+      <div class="svc-ico">
+        <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      </div>
+      <h3>Vulnerability Management</h3>
+      <p>Continuous vulnerability identification, prioritization, and remediation tracking across IT and OT environments - turning scan data into risk-ranked action plans your teams can execute.</p>
+    </div>
+
+  </div>
+</section>
+
+<section id="ot">
+  <div class="eyebrow">Critical Infrastructure</div>
+  <h2>OT &amp; ICS Security</h2>
+  <p class="lead">Operational Technology environments demand a fundamentally different security approach. We bridge the IT/OT divide - securing industrial systems without compromising uptime or operational continuity.</p>
+  <div class="ot-grid">
+    <div class="ot-card">
+      <div class="ot-tag">Scope</div>
+      <h4>SCADA &amp; ICS Assessment</h4>
+      <p>Network segmentation reviews, protocol analysis (Modbus, DNP3, Profinet), and asset inventory of PLC, RTU, and HMI systems across industrial environments.</p>
+    </div>
+    <div class="ot-card">
+      <div class="ot-tag">Architecture</div>
+      <h4>IT/OT Network Segmentation</h4>
+      <p>Purdue Model and ISA/IEC 62443 aligned reviews covering DMZ design, zone and conduit architecture, and lateral movement risk between IT and OT networks.</p>
+    </div>
+    <div class="ot-card">
+      <div class="ot-tag">Compliance</div>
+      <h4>NIST SP 800-82 &amp; IEC 62443</h4>
+      <p>Gap assessments and remediation roadmaps against NIST SP 800-82r3 and IEC 62443, supporting regulatory requirements for energy, manufacturing, and utilities sectors.</p>
+    </div>
+    <div class="ot-card">
+      <div class="ot-tag">Resilience</div>
+      <h4>Incident Response for OT</h4>
+      <p>OT-specific IR planning, tabletop exercises, and playbook development accounting for operational continuity, safety system interactions, and vendor coordination.</p>
+    </div>
+  </div>
+  <div class="ot-industries">
+    <strong>Industries served:</strong> Energy &amp; Utilities - Manufacturing - Water/Wastewater - Oil &amp; Gas - Transportation - Finance &amp; Banking - Healthcare - Legal - Education - Non-Profit
+  </div>
+</section>
+
+<section id="about">
+  <div class="about-wrap">
+    <div>
+      <div class="eyebrow">Why CMTA</div>
+      <h2>Built by Practitioners,<br>For Real Risk.</h2>
+      <p style="font-size:0.95rem;color:var(--muted);line-height:1.85;margin-bottom:0;">We don't sell checkbox compliance. We deliver defensible security postures grounded in real-world experience spanning enterprise and critical infrastructure environments.</p>
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pillar-n">01</div>
+          <div>
+            <h4>Operator Mindset</h4>
+            <p>Every assessment is informed by how attackers actually operate - not textbook theory or templated checklists.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-n">02</div>
+          <div>
+            <h4>Framework-Aligned Rigor</h4>
+            <p>All engagements map to NIST CSF 2.0, CMMC, IEC 62443, and industry-specific compliance standards.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-n">03</div>
+          <div>
+            <h4>Actionable Deliverables</h4>
+            <p>Executive summaries and technical deep dives - clear findings, clear risk ratings, clear next steps.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-n">04</div>
+          <div>
+            <h4>Certified Expertise</h4>
+            <p>CISSP, CASP+, PenTest+, Security+, and AWS certified professionals delivering every engagement.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="about-visual">
+      <div class="about-bg"></div>
+      <div class="about-inner">
+        <svg viewBox="0 0 120 140" width="110" height="130" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="sg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#00c6ff;stop-opacity:0.55"/>
+              <stop offset="100%" style="stop-color:#0077b6;stop-opacity:0.15"/>
+            </linearGradient>
+          </defs>
+          <path d="M60 8 L108 28 L108 70 C108 100 85 122 60 132 C35 122 12 100 12 70 L12 28 Z" fill="url(#sg)" stroke="#00c6ff" stroke-width="1.5" opacity="0.75"/>
+          <path d="M60 22 L94 38 L94 70 C94 92 78 108 60 116 C42 108 26 92 26 70 L26 38 Z" fill="none" stroke="rgba(0,198,255,0.25)" stroke-width="1"/>
+          <path d="M44 68 L56 80 L78 56" stroke="#00c6ff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <p style="color:var(--muted);font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;margin-top:1.2rem;">Certified. Trusted. Vetted.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-wrap">
+    <div class="contact-info">
+      <div class="eyebrow">Get In Touch</div>
+      <h2>Let's Assess<br>Your Risk.</h2>
+      <p>Ready to understand your true security posture? Fill out the form and a member of our team will be in touch within one business day to discuss your needs.</p>
+      <div class="contact-detail">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="m22 6-10 7L2 6"/></svg>
+        <a href="/cdn-cgi/l/email-protection#c6afa8a0a986a5abb2a7a2a3b0a3aaa9b6aba3a8b2e8a5a9ab"><span class="__cf_email__" data-cfemail="6a03040c052a09071e0b0e0f1c0f06051a070f041e44090507">[email&#160;protected]</span></a>
+      </div>
+      <div class="contact-detail">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>South Florida - Serving clients nationwide</span>
+      </div>
+      <div class="contact-detail">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <span>Response within 1 business day</span>
+      </div>
+    </div>
+
+    <div class="cf">
+      <form id="sib-form" method="POST" action="https://90347986.sibforms.com/serve/MUIFACQoUwqQzicMcVxhipzw3NTmGyVGFxWQojOt4Kyz3Qz8yFrK4TeJU-4B7mvvVZwv6Rg9ZeiHPfnChx7iGFJwjLF-D0vOkj_tLjoJO-dcOdsnCgnaQurAheAEVIuehd_KXHgm6nvpMGDJwdTaiEg7ePuR0TDr2pY3fnDit0u-3ZfwS9ZLIO-LBCs-ffE5gR5S7q_4NRtrybfZQA==" data-type="subscription">
+        <div class="cf-row">
+          <div class="cf-field">
+            <label for="FIRSTNAME">First Name</label>
+            <input type="text" id="FIRSTNAME" name="FIRSTNAME" placeholder="John" maxlength="200" data-required="true" required>
+          </div>
+          <div class="cf-field">
+            <label for="LASTNAME">Last Name</label>
+            <input type="text" id="LASTNAME" name="LASTNAME" placeholder="Smith" maxlength="200" data-required="true" required>
+          </div>
+        </div>
+        <div class="cf-row">
+          <div class="cf-field">
+            <label for="EMAIL">Email Address</label>
+            <input type="email" id="EMAIL" name="EMAIL" placeholder="john@company.com" data-required="true" required autocomplete="off">
+          </div>
+          <div class="cf-field">
+            <label for="SMS">Phone Number</label>
+            <input type="tel" id="SMS" name="SMS" placeholder="13055550100" autocomplete="off">
+          </div>
+        </div>
+        <div class="cf-field">
+          <label for="ORGANIZATION">Company / Organization</label>
+          <input type="text" id="ORGANIZATION" name="ORGANIZATION" placeholder="Acme Corporation" maxlength="200" data-required="true" required>
+        </div>
+        <div class="cf-field">
+          <label for="SERVICE_OF_INTEREST">Service of Interest</label>
+          <select id="SERVICE_OF_INTEREST" name="SERVICE_OF_INTEREST" data-required="true" required>
+            <option value="" disabled selected>Select a service...</option>
+            <option value="1">Cybersecurity Risk Assessment (CSRA)</option>
+            <option value="2">Penetration Testing</option>
+            <option value="3">Web Application Security</option>
+            <option value="4">ICS/OT Security</option>
+            <option value="5">Vulnerability Management</option>
+            <option value="6">AI-Driven Security Advisory</option>
+            <option value="7">Compliance &amp; Governance</option>
+            <option value="8">Consulting / vCISO</option>
+            <option value="9">Multiple Services / Not Sure</option>
+          </select>
+        </div>
+        <div class="cf-field" style="margin-bottom:1rem;">
+          <script>
+            function handleCaptchaResponse() {
+              var event = new Event('captchaChange');
+              document.getElementById('sib-captcha').dispatchEvent(event);
+            }
+          </script>
+          <div class="g-recaptcha sib-visible-recaptcha" id="sib-captcha" data-sitekey="6LddVLIsAAAAAJ7qv6moE-eb_ikOf6UuR9BVaONl" data-callback="handleCaptchaResponse" style="direction:ltr"></div>
+        </div>
+        <input type="text" name="email_address_check" value="" style="display:none;">
+        <input type="hidden" name="locale" value="en">
+        <button type="submit" class="cf-submit">Send Message</button>
+        <p class="cf-note">Your information is kept strictly confidential and never shared with third parties.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo-txt">CMTA<span>.</span>dev</div>
+      <p>Enterprise cybersecurity risk assessments, penetration testing, and OT/ICS security - delivered by certified practitioners with real-world enterprise and critical infrastructure experience.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="#services">Risk Assessments</a></li>
+        <li><a href="#services">Penetration Testing</a></li>
+        <li><a href="#services">Web App Security</a></li>
+        <li><a href="#ot">OT / ICS Security</a></li>
+        <li><a href="#services">Vulnerability Management</a></li>
+        <li><a href="#services">Consulting / vCISO</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Stay Informed</h5>
+      <p style="font-size:0.84rem;color:var(--muted);line-height:1.7;margin-bottom:0.5rem;">Threat advisories and CSRA insights delivered to your inbox.</p>
+      <form id="brevo-form" method="POST" action="https://90347986.sibforms.com/serve/MUIFANk7CSEVa6Y_4as8LXpFQ0iojvqqS_XHBClehzkonDZSqNce3vJCmYnwGJCbGsE6D_PwAld-DzYA6yiITG499aoPhxH5sdQkCONv2ywCs1HiykMiesFQKr0qm7J_hSEEfXsGk12bS96QeQYcNVcwg4jlAD7swIwzh5tO0xgo4VLxtv9c8wQVHDS0xCxYBApoNH6YWdKRNMJJ9Q==" data-type="subscription">
+        <div class="footer-nl-row">
+          <input type="email" name="EMAIL" placeholder="your@company.com" required autocomplete="off">
+          <button type="submit">Join</button>
+        </div>
+        <input type="text" name="email_address_check" value="" style="display:none;">
+        <input type="hidden" name="locale" value="en">
+      </form>
+      <p class="footer-nl-note">No spam. Unsubscribe anytime.</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">&copy; 2019-2026 CMTA Development LLC. All rights reserved. &nbsp;|&nbsp; Serving clients since 2019.</span>
+    <div class="footer-legal">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="/cdn-cgi/l/email-protection#076e69616847646a7366636271626b68776a6269732964686a">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  document.querySelectorAll('a[href^="#"]').forEach(function(a) {
