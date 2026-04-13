@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 - Page Not Found | CMTA Development</title>
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://www.cmtadevelopment.com/">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" crossorigin="anonymous">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0c0c0f;
+    --navy2: #131318;
+    --steel: #1c1c24;
+    --accent: #00c6ff;
+    --muted: #7a8ba8;
+    --light: #dde5f0;
+    --white: #ffffff;
+  }
+  html, body {
+    height: 100%;
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: var(--light);
+    overflow: hidden;
+  }
+  .grid {
+    position: fixed; inset: 0;
+    background-image:
+      linear-gradient(rgba(0,198,255,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,198,255,0.035) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+    pointer-events: none;
+  }
+  .orb {
+    position: fixed; top: 10%; right: -5%;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(0,100,180,0.12) 0%, transparent 65%);
+    border-radius: 50%; pointer-events: none;
+  }
+  .orb2 {
+    position: fixed; bottom: -10%; left: -5%;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(0,198,255,0.06) 0%, transparent 65%);
+    border-radius: 50%; pointer-events: none;
+  }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 6%;
+    background: rgba(12,12,15,0.9);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0,198,255,0.07);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 1.25rem;
+    letter-spacing: 0.05em; color: var(--white);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--accent); }
+  .container {
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    height: 100vh; text-align: center;
+    padding: 2rem;
+  }
+  .error-code {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(6rem, 20vw, 12rem);
+    font-weight: 800;
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(0,198,255,0.2);
+    letter-spacing: -0.04em;
+    margin-bottom: 0;
+    user-select: none;
+  }
+  .divider {
+    width: 48px; height: 2px;
+    background: var(--accent);
+    border-radius: 2px;
+    margin: 1.5rem auto;
+  }
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 700; color: var(--white);
+    margin-bottom: 1rem; letter-spacing: -0.01em;
+  }
+  p {
+    font-size: 1rem; color: var(--muted);
+    max-width: 440px; line-height: 1.8;
+    margin-bottom: 2.5rem;
+  }
+  .btn-primary {
+    background: var(--accent); color: var(--navy);
+    font-family: 'DM Sans', sans-serif; font-weight: 700;
+    font-size: 0.88rem; letter-spacing: 0.05em; text-transform: uppercase;
+    padding: 0.9rem 2.2rem; border: none; border-radius: 3px;
+    cursor: pointer; text-decoration: none; display: inline-block;
+    transition: background 0.2s, transform 0.15s;
+    margin-right: 0.75rem; margin-bottom: 0.75rem;
+  }
+  .btn-primary:hover { background: #33d4ff; transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent; color: var(--light);
+    font-family: 'DM Sans', sans-serif; font-weight: 500;
+    font-size: 0.88rem; padding: 0.9rem 2.2rem;
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 3px; cursor: pointer; text-decoration: none;
+    display: inline-block; transition: border-color 0.2s, color 0.2s;
+    margin-bottom: 0.75rem;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+  .shield {
+    margin-bottom: 1rem; opacity: 0.15;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.15; }
+    50% { opacity: 0.25; }
+  }
+  .shield { animation: pulse 3s ease-in-out infinite; }
+</style>
+</head>
+<body>
+
+<div class="grid"></div>
+<div class="orb"></div>
+<div class="orb2"></div>
+
+<nav>
+  <a href="/" class="nav-logo">CMTA<span>.</span>dev</a>
+</nav>
+
+<div class="container">
+
+  <div class="shield">
+    <svg viewBox="0 0 80 95" width="80" height="95" xmlns="http://www.w3.org/2000/svg">
+      <path d="M40 4 L74 18 L74 48 C74 68 58 82 40 90 C22 82 6 68 6 48 L6 18 Z"
+        fill="none" stroke="#00c6ff" stroke-width="2"/>
+      <path d="M40 14 L62 24 L62 48 C62 62 52 73 40 79 C28 73 18 62 18 48 L18 24 Z"
+        fill="none" stroke="rgba(0,198,255,0.4)" stroke-width="1"/>
+    </svg>
+  </div>
+
+  <div class="error-code">404</div>
+  <div class="divider"></div>
+  <h1>Page Not Found</h1>
+  <p>The page you are looking for does not exist or may have been moved. Let us help you get back on track.</p>
+  <div>
+    <a href="/" class="btn-primary">Back to Home</a>
+    <a href="mailto:info@cmtadevelopment.com" class="btn-outline">Contact Us</a>
+  </div>
+
+</div>
+
+</body>
+</html>
