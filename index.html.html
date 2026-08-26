@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CMTA Development LLC</title>
+<meta name="description" content="CMTA Development LLC - Parent company of CMTA Cyber, an offensive security and web application penetration testing firm.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://www.cmtadevelopment.com/">
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:     #080a0f;
+    --bg2:    #0d1117;
+    --border: rgba(255,255,255,0.06);
+    --text:   #c8d0e0;
+    --muted:  #3d4f63;
+    --white:  #ffffff;
+    --accent: #00ffaa;
+    --mono:   'Space Mono', monospace;
+    --sans:   'Inter', sans-serif;
+  }
+
+  html, body {
+    height: 100%;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    min-height: 100vh;
+  }
+
+  /* ── Subtle grid background ── */
+  .bg-grid {
+    position: fixed; inset: 0; z-index: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 40%, black 20%, transparent 100%);
+  }
+
+  /* ── Accent glow ── */
+  .bg-glow {
+    position: fixed;
+    top: -20%; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(0,255,170,0.05) 0%, transparent 65%);
+    pointer-events: none; z-index: 0;
+  }
+
+  /* ── Main content ── */
+  main {
+    position: relative; z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1.5rem;
+    text-align: center;
+  }
+
+  /* ── Eyebrow ── */
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+  }
+
+  /* ── Wordmark ── */
+  .wordmark {
+    margin-bottom: 2.5rem;
+  }
+
+  .wordmark-primary {
+    font-family: var(--mono);
+    font-size: clamp(2.8rem, 8vw, 5.5rem);
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .wordmark-sub {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    opacity: 0.5;
+    margin-top: 0;
+  }
+
+  /* ── Divider ── */
+  .divider {
+    width: 40px; height: 1px;
+    background: var(--accent);
+    opacity: 0.4;
+    margin: 0 auto 3rem;
+  }
+
+  /* ── Property card ── */
+  .property-label {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+
+  .property-card {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 1.8rem 2.8rem;
+    border: 1px solid var(--border);
+    background: var(--bg2);
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.25s, background 0.25s;
+    max-width: 340px;
+    width: 100%;
+  }
+
+  .property-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease;
+  }
+
+  .property-card:hover {
+    border-color: rgba(0,255,170,0.2);
+    background: #0f1419;
+  }
+
+  .property-card:hover::before { transform: scaleX(1); }
+
+  .property-card-tag {
+    font-family: var(--mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    opacity: 0.7;
+  }
+
+  .property-card-name {
+    font-family: var(--mono);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.01em;
+  }
+
+  .property-card-name span { color: var(--accent); }
+
+  .property-card-desc {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.65;
+    max-width: 240px;
+  }
+
+  .property-card-cta {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-top: 0.4rem;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  .property-card:hover .property-card-cta { opacity: 1; }
+
+  /* ── Footer ── */
+  footer {
+    position: relative; z-index: 1;
+    text-align: center;
+    padding: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  footer p {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+
+  footer a {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  footer a:hover { color: var(--text); }
+
+  /* ── Animations ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .wordmark    { animation: fadeUp 0.6s ease 0.1s both; }
+  .divider     { animation: fadeUp 0.6s ease 0.4s both; }
+  .property-label { animation: fadeUp 0.6s ease 0.5s both; }
+  .property-card { animation: fadeUp 0.6s ease 0.6s both; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .wordmark, .divider, .property-label, .property-card {
+      animation: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .property-card { padding: 1.5rem 1.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="bg-glow"></div>
+
+<main>
+
+  <div class="wordmark">
+    <div class="wordmark-sub">CMTA Development &nbsp;·&nbsp; Est. 2019</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <p class="property-label">// Our Projects</p>
+
+  <a href="https://www.cmtacyber.com" class="property-card" target="_blank" rel="noopener noreferrer">
+    <div class="property-card-tag">Cybersecurity</div>
+    <div class="property-card-name">CMTA<span>.cyber</span></div>
+    <div class="property-card-desc">Web application security testing, API security, and source code review.</div>
+    <div class="property-card-cta">Visit cmtacyber.com →</div>
+  </a>
+
+</main>
+
+<footer>
+  <p>&copy; 2019&ndash;2026 CMTA Development LLC &nbsp;·&nbsp; <a href="https://www.cmtacyber.com/privacy-policy.html">Privacy</a> &nbsp;·&nbsp; <a href="https://www.cmtacyber.com/terms-of-service.html">Terms</a></p>
+</footer>
+
+</body>
+</html>
